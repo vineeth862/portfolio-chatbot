@@ -1,0 +1,14 @@
+langchain
+ipykernel
+python-dotenv
+langchain-community
+pypdf
+bs4
+arxiv
+pymupdf
+wikipedia
+langchain-openai
+faiss-cpu
+streamlit
+langchain-groq
+openpyxl
