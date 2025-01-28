@@ -1,4 +1,5 @@
 import os
+import ollama
 # from dotenv import load_dotenv
 import requests
 from langchain.chains.combine_documents import create_stuff_documents_chain
