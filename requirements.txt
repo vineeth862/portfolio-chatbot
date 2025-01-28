@@ -12,3 +12,4 @@ faiss-cpu
 streamlit
 langchain-groq
 openpyxl
+ollama
