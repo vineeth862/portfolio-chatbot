@@ -33,7 +33,7 @@ def query_groq_llama(session_id, query):
     response = requests.post(GROQ_API_URL, json=payload, headers=headers)
     return response.json()
 
-
+ollama.pull('llama3.1:8b')
 embedding_model = OllamaEmbeddings(model='llama3.1:8b')
 faiss_db = FAISS.load_local("vector_database_3", embedding_model,allow_dangerous_deserialization=True)
 
