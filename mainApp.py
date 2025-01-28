@@ -14,13 +14,17 @@ import streamlit as st
 from uuid import uuid4
 
 load_dotenv()
-
-os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_API_KEY"]=st.secrets["LANGCHAIN_API_KEY"]
 os.environ["LANGCHAIN_TRACING_V2"]="true"
-os.environ["LANGCHAIN_PROJECT"]=os.getenv("LANGCHAIN_PROJECT")
-os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API")
+os.environ["LANGCHAIN_PROJECT"]=st.secrets["LANGCHAIN_PROJECT"]
+os.environ['GROQ_API_KEY'] =st.secrets["GROQ_API"]
 
-GROQ_API_KEY = os.getenv("GROQ_API")
+# os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+# os.environ["LANGCHAIN_TRACING_V2"]="true"
+# os.environ["LANGCHAIN_PROJECT"]=os.getenv("LANGCHAIN_PROJECT")
+# os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API")
+
+GROQ_API_KEY = st.secrets["GROQ_API"]
 GROQ_API_URL = "https://api.groq.com/chat"
 
 def query_groq_llama(session_id, query):
