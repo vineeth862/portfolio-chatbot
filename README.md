@@ -3,18 +3,26 @@ RAG Chatbot for My Portfolio 🚀
 This is a Retrieval-Augmented Generation (RAG) chatbot designed to answer questions based on my portfolio, projects, and education. The chatbot leverages Hugging Face for embeddings, FAISS for efficient vector search, and Chat Groq (LLaMA-3.3-70B-Versatile) as the LLM for generating responses. The frontend is built using Streamlit, making it easy to interact with the bot.
 
 Features ✨
+
 📄 Retrieves answers from my portfolio, projects, and education data
 
 🧠 Uses FAISS for fast and scalable vector search
+
 🤖 Embeds text with Hugging Face models
+
 🏎️ Generates responses using Chat Groq (LLaMA-3.3-70B-Versatile)
+
 🌐 User-friendly web interface with Streamlit
+
 🚀 Easily deployable on Streamlit Cloud or other hosting services
 
 Tech Stack 🛠
 Embeddings: Hugging Face (sentence-transformers/all-mpnet-base-v2)
+
 Vector Database: FAISS
+
 LLM: Chat Groq (llama-3.3-70b-versatile)
+
 Frontend & Deployment: Streamlit
 
 Note 📝
