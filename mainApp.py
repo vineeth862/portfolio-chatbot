@@ -1,12 +1,11 @@
 import os
-import ollama
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import requests
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
 
 from langchain.vectorstores import FAISS    
-from langchain.embeddings import OllamaEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 
 from langchain.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
@@ -14,7 +13,7 @@ from langchain_groq import ChatGroq
 import streamlit as st
 from uuid import uuid4
 
-# load_dotenv()
+load_dotenv()
 os.environ["LANGCHAIN_API_KEY"]=st.secrets["LANGCHAIN_API_KEY"]
 os.environ["LANGCHAIN_TRACING_V2"]="true"
 os.environ["LANGCHAIN_PROJECT"]=st.secrets["LANGCHAIN_PROJECT"]
@@ -34,15 +33,24 @@ def query_groq_llama(session_id, query):
     response = requests.post(GROQ_API_URL, json=payload, headers=headers)
     return response.json()
 
-ollama.pull('llama3.1:8b')
-embedding_model = OllamaEmbeddings(model='llama3.1:8b')
-faiss_db = FAISS.load_local("vector_database_3", embedding_model,allow_dangerous_deserialization=True)
+class DummyEmbeddings:
+    def __call__(self, text: str):
+        raise NotImplementedError(
+            "This is a precomputed FAISS database. Embeddings cannot be generated dynamically."
+        )
+
+    def embed_query(self, text: str):
+        raise NotImplementedError(
+            "This is a precomputed FAISS database. Embeddings cannot be generated dynamically."
+        )
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
+faiss_db = FAISS.load_local("vector_database_5",embedding_model,allow_dangerous_deserialization=True)
 
 
 llm = ChatGroq(model="llama-3.3-70b-versatile")
 prompt_template = ChatPromptTemplate.from_template(
     (
-        "You are AiVin, an AI assistant specializing in portfolio insights, project experiences, "
+        "You are AiVin, an AI assistant for Vineeth specializing in portfolio insights, project experiences, "
         "and professional expertise. The entire context provided is related a person called Vineeth. Only use the provided context to answer questions.\n\n"
         "Context: {context}\n\n"
         "Question: {input}\n\n"
@@ -69,7 +77,7 @@ if "session_id" not in st.session_state:
 
 
 # Streamlit App
-st.set_page_config(page_title="Portfolio & Chatbot", layout="wide", initial_sidebar_state="expanded", page_icon="🤖",)
+st.set_page_config(page_title="AiVin Chatbot", layout="wide", initial_sidebar_state="expanded", page_icon="🤖",)
 
 # Sidebar Section
 st.sidebar.title("Vineeth S",)
@@ -172,15 +180,15 @@ st.markdown("""
     <div class="cards-container">
         <div class="card">
             <h3>Sample Question 1</h3>
-            <p>Explain about warehouse optimization project</p>
+            <p>Explain about warehouse optimization project ?</p>
         </div>
         <div class="card">
             <h3>Sample Question 2</h3>
-            <p>Total year of experience?</p>
+            <p>Total year of experience ?</p>
         </div>
         <div class="card">
             <h3>Sample Question 3</h3>
-            <p>How are you?</p>
+            <p>Does vineeth know kannada ?</p>
         </div>
     </div>
 """, unsafe_allow_html=True)
