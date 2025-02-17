@@ -8,6 +8,8 @@ Features ✨
 
 🧠 Uses FAISS for fast and scalable vector search
 
+🔗 LangChain-powered retrieval for better contextual responses
+
 🤖 Embeds text with Hugging Face models
 
 🏎️ Generates responses using Chat Groq (LLaMA-3.3-70B-Versatile)
