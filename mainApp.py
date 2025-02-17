@@ -27,22 +27,9 @@ os.environ['GROQ_API_KEY'] =st.secrets["GROQ_API"]
 GROQ_API_KEY = st.secrets["GROQ_API"]
 GROQ_API_URL = "https://api.groq.com/chat"
 
-def query_groq_llama(session_id, query):
-    headers = {"Authorization": f"Bearer {GROQ_API_KEY}"}
-    payload = {"session_id": session_id, "query": query}
-    response = requests.post(GROQ_API_URL, json=payload, headers=headers)
-    return response.json()
 
-class DummyEmbeddings:
-    def __call__(self, text: str):
-        raise NotImplementedError(
-            "This is a precomputed FAISS database. Embeddings cannot be generated dynamically."
-        )
 
-    def embed_query(self, text: str):
-        raise NotImplementedError(
-            "This is a precomputed FAISS database. Embeddings cannot be generated dynamically."
-        )
+
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
 faiss_db = FAISS.load_local("vector_database_5",embedding_model,allow_dangerous_deserialization=True)
 
