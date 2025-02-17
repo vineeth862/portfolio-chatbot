@@ -12,4 +12,4 @@ faiss-cpu
 streamlit
 langchain-groq
 openpyxl
-ollama
+sentence-transformers
