@@ -17,6 +17,7 @@ Features ✨
 🚀 Easily deployable on Streamlit Cloud or other hosting services
 
 Tech Stack 🛠
+
 Embeddings: Hugging Face (sentence-transformers/all-mpnet-base-v2)
 
 Vector Database: FAISS
@@ -26,6 +27,7 @@ LLM: Chat Groq (llama-3.3-70b-versatile)
 Frontend & Deployment: Streamlit
 
 Note 📝
+
 If you want to clone this application, you must create a vector database using your own portfolio, projects, and education details. The chatbot retrieves answers based on the embedded data, so you need to:
 Replace my vector_database folder with your own.
 Generate new embeddings using Hugging Face models.
