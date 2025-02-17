@@ -4,6 +4,7 @@ This is a Retrieval-Augmented Generation (RAG) chatbot designed to answer questi
 
 Features ✨
 📄 Retrieves answers from my portfolio, projects, and education data
+
 🧠 Uses FAISS for fast and scalable vector search
 🤖 Embeds text with Hugging Face models
 🏎️ Generates responses using Chat Groq (LLaMA-3.3-70B-Versatile)
